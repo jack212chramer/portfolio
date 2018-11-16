@@ -17,7 +17,6 @@
   <projects ></projects>
   <hobbies></hobbies>
   <h3 data-aos="fade-up">Contact:</h3>
-  <modal title="test"></modal>
 
 
 
@@ -67,6 +66,7 @@ Vue.component('skills', {
 
 
 Vue.component('projects', {
+	props: ['projectTitle','description','technologies','GitHub'],
   data: function () {
     return {
       title: ["Portfolio","miniatures/waw.jpg","#",
@@ -74,20 +74,22 @@ Vue.component('projects', {
       "Service with TV series","miniatures/tvs.PNG","#"]
     }
   },
+methods: {
+    setModal: function (i) {
+    	var title= ["Portfolio", "Service with TV series", "Test automating in Selenium"]
+    	var desc= ["Website created for educational purposes and as presentation of my skills.", "Filmweb clone - created for educational purposes.", "Automated front-end functional tests with Page Object Model"]
+    	var tech= ["HTML, CSS, Javascript, Vue.js, Bootstrap4", "Java, Spring (Core+MVC+Security), JDBC, Jackson, HTML, CSS, JS, jQuery, bootstrap4, JSTL tags", "Java, Selenium, JUnit4"]
+    	var git= ["https://github.com/jack212chramer/portfolio", "https://github.com/jack212chramer/TVShow", "https://github.com/jack212chramer/TestyAutomatyczne"]
+      this.projectTitle = title[i];
+      this.description = desc[i];
+      this.technologies = tech[i];
+      this.GitHub = git[i];
+    }},
 
-  template: '<div data-aos="fade-up"> 	<div class="container" >    <div class="row">        <div  class="col-xs-12 section2">        	<h3 ><b>My projects:</b></h3>       </div>    </div></div>  	<div class="container">	<div class="jR3DCarouselGalleryCustomeTemplate">		<div class="jR3DCarouselCustomSlide">				<a  data-toggle="modal" data-target="#myModal" v-bind:href="title[2]">					<img :src="title[1]" />					<span class="captions">{{title[0]}}</span>				</a>							</div>			<div class="jR3DCarouselCustomSlide">				<img :src="title[4]" />				<div class="captions">{{title[3]}}</div>			</div> <div class="jR3DCarouselCustomSlide">				<a v-bind:href="title[8]">					<img :src="title[7]" />					<span class="captions">{{title[6]}}</span>				</a>							</div>		</div>	</div></div>'
+  template: '<div><div data-aos="fade-up"> 	<div class="container" >    <div class="row">        <div  class="col-xs-12 section2">        	<h3 ><b>My projects:</b></h3>       </div>    </div></div>  	<div class="container">	<div class="jR3DCarouselGalleryCustomeTemplate">		<div class="jR3DCarouselCustomSlide">				<a  data-toggle="modal" data-target="#myModal" v-on:click="setModal(0)" v-bind:href="title[2]">					<img :src="title[1]" />					<span class="captions">{{title[0]}}</span>				</a>							</div>			<div class="jR3DCarouselCustomSlide">	<a  data-toggle="modal" data-target="#myModal" v-on:click="setModal(2)" v-bind:href="title[2]">			<img :src="title[4]" />				<div class="captions">{{title[3]}}</div>		</a>	</div> <div class="jR3DCarouselCustomSlide">				<a v-on:click="setModal(1)" data-toggle="modal" data-target="#myModal" v-bind:href="title[8]">					<img :src="title[7]" />					<span class="captions">{{title[6]}}</span>				</a>							</div>		</div>	</div></div> <!-- Modal --><div id="myModal" class="modal fade" role="dialog">  <div class="modal-dialog">    <!-- Modal content-->    <div class="modal-content">      <div class="modal-header">        <button type="button" class="close" data-dismiss="modal">&times;</button>        <h4 class="modal-title">{{projectTitle}}</h4>      </div>      <div class="modal-body">        <p>{{description}}<br> <br>Used technologies: <ol>{{technologies}} </ol><br><a :href="GitHub"><br>Link to GitHub repository</a></p>      </div>      <div class="modal-footer">        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>      </div>    </div>  </div></div></div>' 
 })
 
-Vue.component('modal', {
-	  props: ['title','github','technologies','desc'],
-  data: function () {
-    return {
-      message: ["Portfolio","https://github.com/jack212chramer/TVShow","HTML, CSS, Bootstrap4, jQuery, Vue.js",
-      "Portfolio created to present me and my skills."]
-    }
-  },
-  template: '  <!-- Modal --><div id="myModal" class="modal fade" role="dialog">  <div class="modal-dialog">    <!-- Modal content-->    <div class="modal-content">      <div class="modal-header">        <button type="button" class="close" data-dismiss="modal">&times;</button>        <h4 class="modal-title">{{message[0]}}</h4>      </div>      <div class="modal-body">        <p>{{title}}{{message[3]}}<br> <br>Used technologies: {{message[2]}} <br><br><a :href="message[1]"><br>Link to GitHub repository</a></p>      </div>      <div class="modal-footer">        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>      </div>    </div>  </div></div>'
-})
+
 
 Vue.component('hobbies', {
   data: function () {
@@ -133,11 +135,11 @@ $(document).ready(function(){
 			  animationDuration: 1900,
 			  animationInterval: 2000,
 			  slideClass: 'jR3DCarouselCustomSlide',
-			  autoplay: false,
+			  autoplay: true,
 			  controls: true,			/* control buttons */
 			  navigation: ''			/* circles | squares | '' */,
 			  perspective: 2200,
-			  rotationDirection: 'ltr',
+			  rotationDirection: 'rtr',
 			  onSlideShow: slideShownCallback
 				  
 		}
