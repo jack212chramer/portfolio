@@ -114,21 +114,9 @@ var vm = new Vue({ el: '#components' })
 <script type="text/javascript">
 	//jR3DCarousel library
 $(document).ready(function(){
-	var slideImages = [ {src: 'https://images.pexels.com/photos/8633/nature-tree-green-pine.jpg?cs=srgb&dl=nature-raindrops-drops-of-water-8633.jpg&fm=jpg'},
-	              		{src: 'https://images.unsplash.com/photo-1530919424169-4b95f917e937?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=1831ca8f86228a8439744fd91da0f7a4&w=1000&q=80'},
-	              		{src: 'https://www.planwallpaper.com/static/images/3865967-wallpaper-full-hd_XNgM7er.jpg'}
- ]
-	//var jR3DCarousel;
-	
-	jR3DCarousel = $('.jR3DCarouselGallery').jR3DCarousel({
-		width: 470, 		/* largest allowed width */
-		height: 272, 		/* largest allowed height */
-		slides: slideImages /* array of images source */
-	});
-	
 	var carouselCustomeTemplateProps =  {
-	 		  width: 470, 				/* largest allowed width */
-			  height: 272, 				/* largest allowed height */
+	 		  width: 625, 				/* largest allowed width */
+			  height: 362, 				/* largest allowed height */
 			  slideLayout : 'fill',     /* "contain" (fit according to aspect ratio), "fill" (stretches object to fill) and "cover" (overflows box but maintains ratio) */
 			  animation: 'slide3D', 	/* slide | scroll | fade | zoomInSlide | zoomInScroll */
 			  animationCurve: 'ease',
